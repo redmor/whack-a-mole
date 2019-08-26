@@ -1,0 +1,75 @@
+/* CSS Document */
+
+html, body {
+	width: 700px;
+	margin: 0 auto;
+	font-family: sans-serif;
+	font-size: 13px;
+	color: #333;
+	background-color: #fff;
+	cursor: url(../img/Hammer.png), auto;
+}
+
+h1 {
+	margin: 2px;}
+
+button {
+	font-size: 12px;
+	font-weight: bold;
+	padding: 8px; }
+
+div#content {
+	padding: 20px;
+	background-color: #EEE ;
+	border: 2px solid #28a745;
+	margin-top: 50px;
+}
+
+div#controls {
+	text-align: right; }
+
+div#controls span {
+	font-weight: bold;
+	color: #990000; }
+
+div#controls button {
+	margin-left: 20px; }
+
+div#timer {
+	display: none;
+	font-weight: bold;
+	margin-left: 20px;
+	color: #336699; }
+
+div#gamespace {
+	position: relative;
+	margin: 20px;
+	padding: 10px;
+	height: 350px;
+	border: 2px solid #CCC;
+}
+
+div#gamespace img { position: absolute; }
+
+.headers{
+	text-align: center;
+	margin: 50px 0;
+	position: relative;
+}
+
+.headers h1{
+	font-size: 50px;
+	color: #28a745;
+}
+
+.headers img{
+	position: absolute;
+	top: -20px;
+	right: 79px;
+}
+
+.pts{
+	margin: 0 auto;
+	width: 100px;
+	height: 100px;
+}

@@ -1,0 +1,147 @@
+<!--
+		Name: Oussama Er rabili
+		Date: 10/19/2018
+		Class: CSCI2447, Javascript Fundamentals
+		Project 7
+ -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <title>Whack-A-Mole (CSCI2447)</title>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/jquery-ui.min.js"></script>
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/jquery-ui.min.css" rel="stylesheet" />
+    <link href="css/game.css" rel="stylesheet" />
+
+    <script>
+    //Declaring the global variables
+    //var mole = '<img src="img/mole.png" style="top:'+y+'px;left:'+x+'px;"/>';
+    var score = 0;
+    var seconds = 30;
+    var r, m;
+    var count = 0;
+
+    $(document).ready(function(){
+
+      //Testing the button
+      $("#start_button").click(function(){
+        gameStart();
+        $(this).off('click');
+      }); // end button
+
+        $('#gamespace').on('click', 'img', function(){
+          updateScore();
+          $(this).hide();
+        });
+    }); //end.ready
+
+    //the game starting point function
+    function gameStart(){
+
+      remainSec();
+      //calling add mole function
+      addMole();
+      //changing the gamespace and body background color
+      $('#gamespace').css('background-image','url(img/gsBack.jpeg)');
+
+    }//end gameStart
+
+    //function to decrement the timer
+    function remainSec(){
+      if(seconds<0){
+      clearTimeout(r);
+    $( function() {
+      $('#result').text("Your score is: "+score);
+      $( "#dialog-message" ).dialog({
+        modal: true,
+        buttons: {
+          Ok: function() {
+            $( this ).dialog( "close" );
+            location.reload();
+          }
+        }
+      });
+    });
+
+    }else{
+      //Show the timer
+      $("div#timer").show();
+      $("div#timer").html(seconds+ " seconds left");
+      r = setTimeout('remainSec()', ranMole());
+      seconds--;
+      }
+    }// end remainSec
+
+    //Add the mole to the page function
+    function addMole(){
+      if(seconds<0){
+      clearTimeout(m);
+    }else{
+        count++;
+        $("div#gamespace").append('<img id="mole'+count+'" src="img/mole.png" style="top:'+posY()+'px;left:'+posX()+'px;"/>');
+        var id = "#mole" + count;
+        m = setTimeout('addMole()', ranMole());
+
+        setTimeout(function(){
+          $(id).remove();
+        }, ranMole());
+      }
+    }// end addMole
+
+    //function to update the score
+    function updateScore(){
+      score+=1;
+      $("#score").html(score+ " pts");
+    };//end updateScore
+
+    //functions to generate random numbers
+    function posY(){
+      return Math.floor((Math.random()*250)+1);
+    }; //end y
+
+    function posX(){
+      return Math.floor((Math.random()*500)+1);
+    }; //end x
+
+    function ranMole(){
+      return Math.floor((Math.random()*2000)+1);
+    }; //end x
+
+    </script>
+    <!-- CSS styles: This is for me to worry about; not you. -->
+  </head>
+  <body>
+
+	<div id="content">
+
+  <div class="headers">
+    <h1>Whack-A-Mole</h1>
+    <p>After clicking "start", you will have 30 seconds to click
+    as many moles as you can. The moles appear randomly so be ready! </p>
+    <img src="img/mole.png" alt="mole image">
+  </div>
+
+		<div id="controls">
+			<span id="score">0 pts</span>
+			<button type="button" id="start_button" class="btn btn-info btn-lg">Start!</button>
+		</div>
+
+		<div id="timer">30 seconds left</div>
+
+		<div id="gamespace">
+
+		</div>
+
+	</div>
+
+  <div id="dialog-message">
+  <p>
+    <h1 id='result'></h1>
+  </p>
+</div>
+
+  </body>
+</html>
